@@ -1,0 +1,6 @@
+[tool.ruff]
+line-length = 90
+lint.select = ["E", "F", "W", "I"]
+
+[tool.pytest.ini_options]
+log_level = "INFO"

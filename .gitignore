@@ -1,0 +1,6 @@
+/media
+*.mp3
+!test/media/*.mp3
+*.zip
+*.html
+__pycache__
