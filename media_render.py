@@ -287,15 +287,25 @@ def main(ic, player):
 
     logger.info("Shutdown")
 
-
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         sys.exit("Usage: media_render.py <config-file>")
 
     player = GstPlayer()
     player.start()
+
+    # 1. Crear propiedades base cogiendo los argumentos de consola (Lo que manda IceGrid)
+    props = Ice.createProperties(sys.argv)
+    
+    # 2. Cargar explícitamente tu fichero de configuración encima
+    props.load(sys.argv[1])
+    
+    # 3. Preparar los datos de inicialización
+    init_data = Ice.InitializationData()
+    init_data.properties = props
+
     try:
-        with Ice.initialize(sys.argv[1]) as communicator:
+        with Ice.initialize(sys.argv, init_data) as communicator:
             main(communicator, player)
     except KeyboardInterrupt:
         logger.info("Server interrupted by user.")

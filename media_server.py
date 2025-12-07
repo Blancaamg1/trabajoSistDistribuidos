@@ -304,13 +304,23 @@ def main(ic):
    logger.info("Shutdown")
 
 
-
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         sys.exit("Usage: media_server.py <config-file>")
 
+    # 1. Crear propiedades base cogiendo los argumentos de consola (Lo que manda IceGrid)
+    props = Ice.createProperties(sys.argv)
+    
+    # 2. Cargar explícitamente tu fichero de configuración encima
+    props.load(sys.argv[1])
+    
+    # 3. Preparar los datos de inicialización
+    init_data = Ice.InitializationData()
+    init_data.properties = props
+
     try:
-        with Ice.initialize(sys.argv[1]) as communicator:
+        # 4. Inicializar usando esos datos combinados
+        with Ice.initialize(sys.argv, init_data) as communicator:
             main(communicator)
     except KeyboardInterrupt:
         logger.info("Server interrupted by user.")
