@@ -1,4 +1,4 @@
-# Configuration file (12/03/25 19:47:58.772)
+# Configuration file (12/10/25 18:19:28.608)
 
 # Server configuration
 Ice.Admin.ServerId=MediaServer
@@ -13,4 +13,4 @@ MediaServer.Playlists=playlists
 MediaServer.UsersFile=users.json
 Ice.Stdout=media_server.out
 Ice.Stderr=media_server.err
-Ice.Default.Locator=IceGrid/Locator:tcp -h 127.0.0.1 -p 4061
+Ice.Default.Locator=IceGrid/Locator -t:tcp -h 127.0.0.1 -p 4061

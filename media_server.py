@@ -294,9 +294,7 @@ def main(ic):
 
    adapter = ic.createObjectAdapter("MediaServerAdapter")
    servant = MediaServerI(Path(media_dir), Path(playlist_dir), Path(users_file))
-   server_identity = ic.getProperties().getProperty("Ice.ProgramName")
-   proxy = adapter.add(servant, ic.stringToIdentity(server_identity))
-   #proxy = adapter.add(servant, ic.stringToIdentity("mediaServer1"))
+   proxy = adapter.add(servant, ic.stringToIdentity("mediaServer1"))
 
    logger.info(f"MediaServer: {proxy}")
 

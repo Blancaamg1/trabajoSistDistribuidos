@@ -279,9 +279,7 @@ def main(ic, player):
     servant = MediaRenderI(player)
 
     adapter = ic.createObjectAdapter("MediaRenderAdapter")
-    #proxy = adapter.add(servant, ic.stringToIdentity("mediaRender1"))
-    render_identity = ic.getProperties().getProperty("Ice.ProgramName")
-    proxy = adapter.add(servant, ic.stringToIdentity(render_identity))
+    proxy = adapter.add(servant, ic.stringToIdentity("mediaRender1"))
     logger.info(f"MediaRender: {proxy}")
 
     adapter.activate()
