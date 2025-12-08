@@ -1,35 +1,90 @@
-<icegrid>
-    <application name="SpotificeApp">
+<application name="Spotifice">
 
-        <node name="node1">
-            <server id="MediaServer" exe="./media_server.py" pwd="." activation="on-demand">
-                <option>server.config</option>
-                
-                <adapter name="MediaServerAdapter" endpoints="tcp">
-                    <object identity="mediaServer1" type="::Spotifice::MediaServer"/>
-                </adapter>
+    <client-application name="SpotificeApp">
+        <client path="./">
+            <file name="media_server.py"/>
+            <file name="media_render.py"/>
+            <file name="media_control.py"/>
+            <file name="spotifice_v2.ice"/>
+            <file name="users.json"/>
+            <data name="media"/>
+            <data name="playlists"/>
+        </client>
+    </client-application>
+    
+    <object identity="MediaServer.Proxy" type="::Spotifice::MediaServer">
+        <replica id="MediaServer1"/>
+        <replica id="MediaServer2"/>
+    </object>
 
-                <property name="MediaServer.Content" value="media"/>
-                <property name="MediaServer.Playlists" value="playlists"/>
-                <property name="MediaServer.UsersFile" value="users.json"/>
-                
-                <property name="Ice.Stdout" value="media_server.out"/>
-                <property name="Ice.Stderr" value="media_server.err"/>
-            </server>
-        </node>
+    <object identity="MediaRender.Proxy" type="::Spotifice::MediaRender">
+        <replica id="MediaRender1"/>
+        <replica id="MediaRender2"/>
+    </object>
 
-        <node name="node2">
-            <server id="MediaRender" exe="./media_render.py" pwd="." activation="on-demand">
-                <option>render.config</option>
 
-                <adapter name="MediaRenderAdapter" endpoints="tcp">
-                    <object identity="mediaRender1" type="::Spotifice::MediaRender"/>
-                </adapter>
-                
-                <property name="Ice.Stdout" value="media_render.out"/>
-                <property name="Ice.Stderr" value="media_render.err"/>
-            </server>
-        </node>
+    <server-template id="MediaServerTemplate">
+        <server id="${server.id}"
+                path="./"
+                activation="on-demand"> 
+            
+            <exec command="python3 media_server.py"/>
+            
+            <adapter name="${server.adapter}"
+                     id="${server.adapter}"
+                     endpoints="tcp">
+                <object identity="${server.id}"
+                        type="::Spotifice::SecureStreamManager"/>
+            </adapter>
+            
+            <properties>
+                <property name="Ice.Default.Locator" value="IceGrid/Locator:tcp -h 127.0.0.1 -p 4071"/>
+                <property name="Ice.Program.Client" value="SpotificeApp"/>
+            </properties>
+        </server>
+    </server-template>
 
-    </application>
-</icegrid>
+
+    <server-template id="MediaRenderTemplate">
+        <server id="${render.id}"
+                path="./"
+                activation="on-demand"> 
+            
+            <exec command="python3 media_render.py"/>
+            
+            <adapter name="${render.adapter}"
+                     id="${render.adapter}"
+                     endpoints="tcp">
+                <object identity="${render.id}"
+                        type="::Spotifice::MediaRender"/>
+            </adapter>
+            
+            <properties>
+                <property name="Ice.Default.Locator" value="IceGrid/Locator:tcp -h 127.0.0.1 -p 4071"/>
+                <property name="Ice.Program.Client" value="SpotificeApp"/>
+            </properties>
+        </server>
+    </server-template>
+
+
+    <server id="MediaServer1" template="MediaServerTemplate" node="node1">
+        <property name="server.id" value="MediaServer1"/>
+        <property name="server.adapter" value="MediaAdapter1"/>
+    </server>
+
+    <server id="MediaServer2" template="MediaServerTemplate" node="node2">
+        <property name="server.id" value="MediaServer2"/>
+        <property name="server.adapter" value="MediaAdapter2"/>
+    </server>
+
+    <server id="MediaRender1" template="MediaRenderTemplate" node="node1">
+        <property name="render.id" value="MediaRender1"/>
+        <property name="render.adapter" value="RenderAdapter1"/>
+    </server>
+
+    <server id="MediaRender2" template="MediaRenderTemplate" node="node2">
+        <property name="render.id" value="MediaRender2"/>
+        <property name="render.adapter" value="RenderAdapter2"/>
+    </server>
+
+</application>

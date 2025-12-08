@@ -1,0 +1,33 @@
+{
+    "id": "Portal2-vol3",
+    "name": "Portal 2 Soundtrack Volume 3",
+    "description": "",
+    "owner": "Valve Inc",
+    "created_at": "30-09-2011",
+    "track_ids": [
+        "Portal2-01-Reconstructing_More_Science.mp3",
+        "Portal2-02-Wheatley_Science.mp3",
+        "Portal2-03-FrankenTurrets.mp3",
+        "Portal2-04-Machiavellian_Bach.mp3",
+        "Portal2-05-Excursion_Funnel.mp3",
+        "Portal2-06-TEST.mp3",
+        "Portal2-07-The_Part_Where_He_Kills_You.mp3",
+        "Portal2-08-Omg_What_has_He_Done_.mp3",
+        "Portal2-09-Bombs_for_Throwing_at_You.mp3",
+        "Portal2-10-Your_Precious_Moon.mp3",
+        "Portal2-11-Caroline_Deleted.mp3",
+        "Portal2-12-Cara_Mia_Addio.mp3",
+        "Portal2-13-Want_You_Gone.mp3",
+        "Portal2-14-Spaaaaace.mp3",
+        "Portal2-15-Space_Phase.mp3",
+        "Portal2-16-Some_Assembly_Required.mp3",
+        "Portal2-17-Robot_Waiting_Room_#1.mp3",
+        "Portal2-18-Robot_Waiting_Room_#2.mp3",
+        "Portal2-19-Robot_Waiting_Room_#3.mp3",
+        "Portal2-20-Robot_Waiting_Room_#4.mp3",
+        "Portal2-21-Robot_Waiting_Room_#5.mp3",
+        "Portal2-22-Robot_Waiting_Room_#6.mp3",
+        "Portal2-23-You_Saved_Science.mp3",
+        "Portal2-24-Robots_FTW.mp3"
+    ]
+}
