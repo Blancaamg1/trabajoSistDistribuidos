@@ -1,0 +1,16 @@
+# Configuration file (12/12/25 23:47:10.909)
+
+# Server configuration
+Ice.Admin.ServerId=MediaServer1
+Ice.Admin.Endpoints=tcp -h localhost
+Ice.ProgramName=MediaServer1
+# Object adapter MediaServerAdapter
+MediaServerAdapter.Endpoints=tcp
+MediaServerAdapter.AdapterId=MediaServer1.MediaServerAdapter
+# Server descriptor properties
+MediaServer.Content=media
+MediaServer.Playlists=playlists
+MediaServer.UsersFile=users.json
+Ice.Stdout=media_server1.out
+Ice.Stderr=media_server1.err
+Ice.Default.Locator=IceGrid/Locator -t:tcp -h 127.0.0.1 -p 4061

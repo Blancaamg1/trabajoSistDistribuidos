@@ -1,0 +1,18 @@
+{
+  "user": {
+    "fullname": "Test user with password 'secret'",
+    "email": "test.user@example.com",
+    "is_premium": false,
+    "created_at": "2025-01-01T00:00:00Z",
+    "salt": "1239459d33341643",
+    "digest": "e749c418e1ccbf65c090c5c7859647b8"
+  },
+  "jdoe": {
+    "fullname": "John Doe",
+    "email": "jdoe@example.com",
+    "is_premium": false,
+    "created_at": "2024-12-23T00:00:00Z",
+    "salt": "9a3f6b12d9e4f7a0",
+    "digest": "b1946ac92492d22347c6235b4d2611184"
+  }
+}

@@ -1,36 +1,87 @@
 <icegrid>
     <application name="SpotificeApp">
 
+        <!-- ================= NODE 1 ================= -->
         <node name="node1">
-            <server id="MediaServer" exe="./media_server.py" pwd="~/distribuidos/Trabajo/trabajoSistDistribuidos" activation="on-demand">
+
+            <server id="MediaServer1"
+                    exe="./media_server.py"
+                    pwd="/home/ubuntu/distribuidos/Trabajo/trabajoSistDistribuidos"
+                    activation="on-demand">
+
                 <option>server.config</option>
-                
+
                 <adapter name="MediaServerAdapter" endpoints="tcp">
-                    <object identity="mediaServer1" type="::Spotifice::MediaServer"/>
+                    <object identity="mediaServer1"
+                            type="::Spotifice::MediaServer"/>
                 </adapter>
 
                 <property name="MediaServer.Content" value="media"/>
                 <property name="MediaServer.Playlists" value="playlists"/>
                 <property name="MediaServer.UsersFile" value="users.json"/>
-                
-                <property name="Ice.Stdout" value="media_server.out"/>
-                <property name="Ice.Stderr" value="media_server.err"/>
-            </server>
-        </node>
 
-        <node name="node2">
-            <server id="MediaRender" exe="./media_render.py" pwd="~/distribuidos/Trabajo/trabajoSistDistribuidos" activation="on-demand">
+                <property name="Ice.Stdout" value="media_server1.out"/>
+                <property name="Ice.Stderr" value="media_server1.err"/>
+            </server>
+
+            <server id="MediaRender1"
+                    exe="./media_render.py"
+                    pwd="/home/ubuntu/distribuidos/Trabajo/trabajoSistDistribuidos"
+                    activation="on-demand">
+
                 <option>render.config</option>
 
                 <adapter name="MediaRenderAdapter" endpoints="tcp">
-                    <object identity="mediaRender1" type="::Spotifice::MediaRender"/>
+                    <object identity="mediaRender1"
+                            type="::Spotifice::MediaRender"/>
                 </adapter>
-                
-                <property name="Ice.Stdout" value="media_render.out"/>
-                <property name="Ice.Stderr" value="media_render.err"/>
+
+                <property name="Ice.Stdout" value="media_render1.out"/>
+                <property name="Ice.Stderr" value="media_render1.err"/>
             </server>
+
         </node>
 
-        
+        <!-- ================= NODE 2 ================= -->
+        <node name="node2">
+
+            <server id="MediaServer2"
+                    exe="./media_server.py"
+                    pwd="/home/ubuntu/distribuidos/Trabajo/trabajoSistDistribuidos"
+                    activation="on-demand">
+
+                <option>server.config</option>
+
+                <adapter name="MediaServerAdapter" endpoints="tcp">
+                    <object identity="mediaServer2"
+                            type="::Spotifice::MediaServer"/>
+                </adapter>
+
+                <property name="MediaServer.Content" value="media"/>
+                <property name="MediaServer.Playlists" value="playlists"/>
+                <property name="MediaServer.UsersFile" value="users.json"/>
+
+                <property name="Ice.Stdout" value="media_server2.out"/>
+                <property name="Ice.Stderr" value="media_server2.err"/>
+            </server>
+
+            <server id="MediaRender2"
+                    exe="./media_render.py"
+                    pwd="/home/ubuntu/distribuidos/Trabajo/trabajoSistDistribuidos"
+                    activation="on-demand">
+
+                <option>render.config</option>
+
+                <adapter name="MediaRenderAdapter" endpoints="tcp">
+                    <object identity="mediaRender2"
+                            type="::Spotifice::MediaRender"/>
+                </adapter>
+
+                <property name="Ice.Stdout" value="media_render2.out"/>
+                <property name="Ice.Stderr" value="media_render2.err"/>
+            </server>
+
+        </node>
+
     </application>
 </icegrid>
