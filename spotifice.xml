@@ -2,7 +2,7 @@
     <application name="SpotificeApp">
 
         <node name="node1">
-            <server id="MediaServer" exe="./media_server.py" pwd="." activation="on-demand">
+            <server id="MediaServer" exe="./media_server.py" pwd="~/distribuidos/Trabajo/trabajoSistDistribuidos" activation="on-demand">
                 <option>server.config</option>
                 
                 <adapter name="MediaServerAdapter" endpoints="tcp">
@@ -19,7 +19,7 @@
         </node>
 
         <node name="node2">
-            <server id="MediaRender" exe="./media_render.py" pwd="." activation="on-demand">
+            <server id="MediaRender" exe="./media_render.py" pwd="~/distribuidos/Trabajo/trabajoSistDistribuidos" activation="on-demand">
                 <option>render.config</option>
 
                 <adapter name="MediaRenderAdapter" endpoints="tcp">
@@ -31,5 +31,6 @@
             </server>
         </node>
 
+        
     </application>
 </icegrid>
